@@ -22,11 +22,20 @@ body {
 	padding:10px;
     background-color: rgb(247, 211, 229);
 }
+
 .sidebar {
 	grid-area: sidebar;
 	padding:10px;
     background-color: rgb(190, 240, 174)
 }
+
+.sidebar-item {
+    padding: 10px; /* adds inner padding */
+    background: rgb(132, 209, 132); /* background color */
+    border: 1px solid rgb(68, 114, 66); /* border width, style, and color */
+    margin: 5px; /* outer padding */
+}
+
 .content {
 	grid-area: content;
 }

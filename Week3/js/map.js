@@ -64,4 +64,7 @@ let locations = [
         var marker = L.marker([item.lat,item.lon]).addTo(map)
                     .bindPopup(item.title+": "+item.desc)
                     .openPopup()
+        
+        // add data to sidebar
+         $('.sidebar').append(`<div class="sidebar-item">${item.title}</div>`)
     });
