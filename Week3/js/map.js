@@ -59,12 +59,21 @@ let locations = [
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
+   
+    //fly function 
+    function flyToIndex(index){
+        console.log(index)
+        console.log(locations[index].lat)
+        map.flyTo([locations[index].lat,locations[index].lon],12);
+    }
 
-    locations.forEach(function(item){
+    locations.forEach(function(item, index){
         var marker = L.marker([item.lat,item.lon]).addTo(map)
                     .bindPopup(item.title+": "+item.desc)
                     .openPopup()
-        
+     
         // add data to sidebar
-         $('.sidebar').append(`<div class="sidebar-item">${item.title}</div>`)
+         $('.sidebar').append(`<div class="sidebar-item" onclick="flyToIndex(${index})">${item.title}</div>`)
+         
     });
+  
