@@ -10,23 +10,25 @@ body,html {
 
 body {
     display: grid;
-	grid-template-rows: 80px 1fr;
-	grid-template-columns: 250px 1fr;
+	grid-template-rows: 120px 1fr;
+	grid-template-columns: 1fr 400px;
 	grid-template-areas: 
 	"header header"
-	"sidebar content";
+	"content sidebar";
 }
 
 .header {
 	grid-area: header;
 	padding:10px;
-    background-color: rgb(247, 211, 229);
+    background-image: url("https://wallpapercave.com/wp/wp4464657.jpg");
+ 	background-color: #cccccc;
 }
 
 .sidebar {
 	grid-area: sidebar;
 	padding:10px;
-    background-color: rgb(190, 240, 174)
+    background-color: rgb(190, 240, 174);
+	overflow: auto; /*sidebar scroll*/
 }
 
 .sidebar-item {
@@ -34,6 +36,13 @@ body {
     background: rgb(132, 209, 132); /* background color */
     border: 1px solid rgb(68, 114, 66); /* border width, style, and color */
     margin: 5px; /* outer padding */
+	border-radius: 12px;
+		cursor: pointer; /*change hover to hand*/
+	transition-duration: 0.4s;
+}
+
+.sidebar-item:hover {
+	background-color: rgb(112, 177, 110);
 }
 
 .content {
