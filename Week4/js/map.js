@@ -1,13 +1,13 @@
 // Global variables
 let map;
-let lat = 0;
-let lon = 0;
-let zl = 3;
+let lat = 38.5816;
+let lon = -121.4944;
+let zl = 6;
 // global variables
 let markers = L.featureGroup();
 
 // path to csv data
-let path = "data/dunitz.csv";
+let path = "data/California_Fire_Incidents.csv";
 
 // initialize
 $( document ).ready(function() {
