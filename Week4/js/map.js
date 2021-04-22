@@ -5,6 +5,7 @@ let lon = -121.4944;
 let zl = 6;
 // global variables
 let markers = L.featureGroup();
+
 // path to csv data
 let path = "https://raw.githubusercontent.com/hanarama/DH151/main/Week4/data/California_Fire_Incidents.csv";
 // let path = "https://raw.githubusercontent.com/hanarama/DH151/main/Week4/data/dunitz.csv";
@@ -39,17 +40,35 @@ function readCSV(path){
 	});
 }
 function mapCSV(data){
+
+	//circle markers
+	let circleOptions = {
+		radius: 5,
+		weight: 1,
+		color: 'white',
+		fillColor: 'dodgerblue',
+		fillOpacity: 1
+	}
 	
 	// loop through each entry
 	data.data.forEach(function(item,index){
 
         if ("Latitude" in item && item.Longitude != 0){
             // create marker
-            let marker = L.marker([item.Latitude,item.Longitude]).bindPopup(item.Name+": "+item.AcresBurned);
-
+            let marker = L.circleMarker([item.Latitude,item.Longitude],circleOptions)
+			.on('mouseover',function(){
+				this.bindPopup(item.Name+": "+item.AcresBurned+" acres burned").openPopup()
+				//.bindPopup(item.Name+": "+item.AcresBurned);
+			})	
             // add marker to featuregroup
             markers.addLayer(marker)
-        }
+
+			//add entry to sidebar
+			$('.sidebar').append(`<onclick = "(${item.Name}, ${item.Location}, ${item.SearchDescription})">`)
+
+			//add marker by year to layer
+			
+			}
 	})
 
 	// add featuregroup to map
