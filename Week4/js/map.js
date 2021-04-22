@@ -5,13 +5,12 @@ let lon = -121.4944;
 let zl = 6;
 // global variables
 let markers = L.featureGroup();
-
 // path to csv data
 let path = "https://raw.githubusercontent.com/hanarama/DH151/main/Week4/data/California_Fire_Incidents.csv";
 
 // initialize
 $( document ).ready(function() {
-	createMap(lat,lon,zl);
+	createMap(lat,lon, zl);
     readCSV(path);
 });
 
@@ -55,3 +54,7 @@ function mapCSV(data){
 	// fit markers to map
 	map.fitBounds(markers.getBounds())
 }
+//define layers
+// let layers = {
+//     "My Markers": myMarkers
+// }
