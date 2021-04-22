@@ -5,10 +5,12 @@ let lon = -121.4944;
 let zl = 6;
 // global variables
 let markers = L.featureGroup();
+// if ("2018" in item) let markers = L.layerGroup1();
+// if ("2019" in item) let markers = L.layerGroup2();
+// if ("2020" in item) let markers = L.layerGroup3();
 
 // path to csv data
 let path = "https://raw.githubusercontent.com/hanarama/DH151/main/Week4/data/California_Fire_Incidents.csv";
-// let path = "https://raw.githubusercontent.com/hanarama/DH151/main/Week4/data/dunitz.csv";
 
 // initialize
 $( document ).ready(function() {
@@ -46,7 +48,7 @@ function mapCSV(data){
 		radius: 5,
 		weight: 1,
 		color: 'white',
-		fillColor: 'dodgerblue',
+		fillColor: 'red',
 		fillOpacity: 1
 	}
 	
@@ -58,13 +60,26 @@ function mapCSV(data){
             let marker = L.circleMarker([item.Latitude,item.Longitude],circleOptions)
 			.on('mouseover',function(){
 				this.bindPopup(item.Name+": "+item.AcresBurned+" acres burned").openPopup()
-				//.bindPopup(item.Name+": "+item.AcresBurned);
 			})	
-            // add marker to featuregroup
-            markers.addLayer(marker)
 
-			//add entry to sidebar
-			$('.sidebar').append(`<onclick = "(${item.Name}, ${item.Location}, ${item.SearchDescription})">`)
+			//sidebar click event
+			.on('click',function(){
+				var sidebar = document.getElementById('firebar');
+				sidebar.innerHTML = (
+					`<div> <h3> ${item.Name} </h3> </div>
+					<p>Location:
+					${item.Location}</p>
+					<p>Fire Description 
+					${item.SearchDescription}</p>`)
+			})
+
+            // add marker to featuregroup
+            // markers.addLayer(marker)
+
+			//add items with 2018 to one layer group
+			if ("2018" == item.ArchiveYear){
+				f2018 
+			}
 
 			//add marker by year to layer
 			
@@ -80,6 +95,5 @@ function mapCSV(data){
 //define layers
 // let layers = {
 //     "2018": myMarkers
-//      "2019":
-//      "2020":
+     
 // }
