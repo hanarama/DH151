@@ -43,7 +43,7 @@ function mapCSV(data){
 	// loop through each entry
 	data.data.forEach(function(item,index){
 
-        if ("Latitude" in item){
+        if ("Latitude" in item && item.Longitude != 0){
             // create marker
             let marker = L.marker([item.Latitude,item.Longitude]).bindPopup(item.Name+": "+item.AcresBurned);
 
