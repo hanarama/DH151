@@ -6,7 +6,8 @@ let zl = 6;
 // global variables
 let markers = L.featureGroup();
 // path to csv data
-let path = "https://raw.githubusercontent.com/hanarama/DH151/main/Week4/data/calenviroscreen-3.0-results-june-2018-update.csv";
+let path = "https://raw.githubusercontent.com/hanarama/DH151/main/Week4/data/California_Fire_Incidents.csv";
+// let path = "https://raw.githubusercontent.com/hanarama/DH151/main/Week4/data/dunitz.csv";
 
 // initialize
 $( document ).ready(function() {
@@ -42,17 +43,19 @@ function mapCSV(data){
 	// loop through each entry
 	data.data.forEach(function(item,index){
 		// create marker
-		let marker = L.marker([item.latitude,item.longitude])
+        if ("latitude" in item){ 
+            let marker = L.marker([item.latitude,item.longitude])
 
-		// add marker to featuregroup
-		markers.addLayer(marker)
+            // add marker to featuregroup
+            markers.addLayer(marker)
+        }
 	})
 
 	// add featuregroup to map
 	markers.addTo(map)
 
 	// fit markers to map
-	map.fitBounds(markers.getBounds())
+    map.fitBounds(markers.getBounds())
 }
 //define layers
 // let layers = {
