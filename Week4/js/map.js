@@ -6,7 +6,7 @@ let zl = 6;
 // global variables
 let markers = L.featureGroup();
 // path to csv data
-let path = "https://raw.githubusercontent.com/hanarama/DH151/main/Week4/data/California_Fire_Incidents.csv";
+let path = "https://raw.githubusercontent.com/hanarama/DH151/main/Week4/data/California_Fire_Incidents_Reduced.csv";
 // let path = "https://raw.githubusercontent.com/hanarama/DH151/main/Week4/data/dunitz.csv";
 
 // initialize
