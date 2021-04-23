@@ -77,9 +77,9 @@ function mapCSV(data){
             // markers.addLayer(marker)
 
 			//add items with 2018 to one layer group
-			if ("2018" == item.ArchiveYear){
-				f2018 
-			}
+			// if ("2018" == item.ArchiveYear){
+			// 	f2018
+			// }
 
 			//add marker by year to layer
 			
