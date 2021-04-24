@@ -5,10 +5,15 @@ let lon = -121.4944;
 let zl = 6;
 // global variables
 let markers = L.featureGroup();
-// if ("2018" in item) let markers = L.layerGroup1();
-// if ("2019" in item) let markers = L.layerGroup2();
-// if ("2020" in item) let markers = L.layerGroup3();
+let f2018 = L.layerGroup();
+let f2019 = L.layerGroup();
 
+//define layers
+let layers = {
+    "2018 Fires": f2018,
+	"2019 Fires": f2019
+     
+}
 // path to csv data
 let path = "https://raw.githubusercontent.com/hanarama/DH151/main/Week4/data/California_Fire_Incidents.csv";
 
@@ -41,11 +46,21 @@ function readCSV(path){
 		}
 	});
 }
+//show and hide paragraph 
+function ShowAndHide() {
+	var x = document.getElementById('info');
+	if (x.style.display == 'none') {
+		x.style.display = 'block';
+	} else {
+		x.style.display = 'none';
+	}
+}
+
 function mapCSV(data){
 
 	//circle markers
 	let circleOptions = {
-		radius: 5,
+		radius: 6,
 		weight: 1,
 		color: 'white',
 		fillColor: 'red',
@@ -69,31 +84,34 @@ function mapCSV(data){
 					`<div> <h3> ${item.Name} </h3> </div>
 					<p>Location:
 					${item.Location}</p>
-					<p>Fire Description 
-					${item.SearchDescription}</p>`)
+					<div class="sidebar-item" onclick="ShowAndHide()">More Information</div>
+					<div id = "info" style="display: none">${item.SearchDescription}<\div>`)
+					
 			})
-
-            // add marker to featuregroup
-            // markers.addLayer(marker)
-
-			//add items with 2018 to one layer group
-			// if ("2018" == item.ArchiveYear){
-			// 	f2018
-			// }
-
-			//add marker by year to layer
 			
+            // add marker to featuregroup
+            markers.addLayer(marker)
+
+			//add items by year to layer groups
+			if ("2018" == item.ArchiveYear){
+				f2018.addLayer(marker)
 			}
+			else if ("2019" == item.ArchiveYear){
+				f2019.addLayer(marker)
+			}
+		}
 	})
 
 	// add featuregroup to map
-	markers.addTo(map)
+	//markers.addTo(map)
+
+	// add layer groups to map
+	f2018.addTo(map)
+	f2019.addTo(map)
+
+	//layer controls
+	L.control.layers(null,layers).addTo(map)
 
 	// fit markers to map
     map.fitBounds(markers.getBounds())
 }
-//define layers
-// let layers = {
-//     "2018": myMarkers
-     
-// }

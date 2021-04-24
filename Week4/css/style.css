@@ -35,6 +35,20 @@ body {
 	overflow: auto;
 }
 
+.sidebar-item {
+	padding: 10px; 
+    background: rgb(100, 10, 10); 
+    border: 1px solid rgb(34, 34, 34); 
+    margin: 5px; 
+	border-radius: 12px;
+		cursor: pointer; 
+	transition-duration: 0.4s;
+}
+
+.sidebar-item:hover {
+	background-color: rgb(80, 0, 0);
+}
+
 .content {
 	grid-area: content;
 }
