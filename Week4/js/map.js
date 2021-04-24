@@ -56,11 +56,28 @@ function ShowAndHide() {
 	}
 }
 //Zoom In function
-function ZoomTo(lat,lon) {
+function zoomTo(lat,lon) {
 	// zoom to level 17 first
-	map.setZoom(11);
+	map.setZoom(12);
 	// pan to the marker
 	map.panTo([lat, lon])
+}
+
+//Zoom back out function
+function zoomOut(){
+	map.fitBounds(markers.getBounds())
+}
+
+//Alternate zoom in + zoom out button
+function inNOut(lat,lon) {
+	var zoombutton = document.getElementById('zoombutton');
+	if (zoombutton.textContent == 'Zoom In') { //if text says...
+		zoombutton.textContent = 'Zoom Out';   //switch text to 
+		zoomTo(lat,lon)							//do function
+	} else {
+		zoombutton.textContent = 'Zoom In';		//switch text back 
+		zoomOut()								//do 2nd function
+	}
 }
 
 function mapCSV(data){
@@ -93,7 +110,7 @@ function mapCSV(data){
 					${item.Location}</p>
 					<div class="sidebar-item" onclick="ShowAndHide()">More Information</div>
 					<div id = "info" style="display: none">${item.SearchDescription}</div>
-					<div class="sidebar-item" onclick="ZoomTo(${item.Latitude}, ${item.Longitude})">Zoom In</div>`)
+					<div id = "zoombutton" class="sidebar-item" onclick="inNOut(${item.Latitude}, ${item.Longitude})">Zoom In</div>`)
 					
 			})
 			
