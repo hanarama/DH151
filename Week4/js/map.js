@@ -55,6 +55,13 @@ function ShowAndHide() {
 		x.style.display = 'none';
 	}
 }
+//Zoom In function
+function ZoomTo(lat,lon) {
+	// zoom to level 17 first
+	map.setZoom(11);
+	// pan to the marker
+	map.panTo([lat, lon])
+}
 
 function mapCSV(data){
 
@@ -85,7 +92,8 @@ function mapCSV(data){
 					<p>Location:
 					${item.Location}</p>
 					<div class="sidebar-item" onclick="ShowAndHide()">More Information</div>
-					<div id = "info" style="display: none">${item.SearchDescription}<\div>`)
+					<div id = "info" style="display: none">${item.SearchDescription}</div>
+					<div class="sidebar-item" onclick="ZoomTo(${item.Latitude}, ${item.Longitude})">Zoom In</div>`)
 					
 			})
 			
