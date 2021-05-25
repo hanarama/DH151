@@ -170,6 +170,50 @@ function highlightFeature(e) {
 
 	info_panel.update(layer.feature.properties);
 
+    createDashboard(layer.feature.properties)
+
+}
+
+function createDashboard(properties){
+
+	// clear dashboard
+	$('.dashboard').empty();
+
+	console.log(properties)
+
+	// chart title
+	let title = 'Championships Won';
+
+	// data values
+	let data = [27,17,17,20];
+
+	// data fields
+	let fields = ['New York Yankees','LA Lakers','Boston Celtics','Manchester United'];
+
+	let options = {
+		chart: {
+			type: 'pie',
+			height: 400,
+			width: 400,			
+			animations: {
+				enabled: true,
+			}
+		},
+		title: {
+			text: title,
+		},
+		series: data,
+		labels: fields,
+		legend: {
+			position: 'right',
+			offsetY: 0,
+			height: 230,
+		  }
+	};
+    
+	// create the chart
+	let chart = new ApexCharts(document.querySelector('.dashboard'), options)
+	chart.render()
 }
 
 // on mouse out, reset the style, otherwise, it will remain highlighted
